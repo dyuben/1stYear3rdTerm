@@ -1,0 +1,479 @@
+import java.io.BufferedReader;
+ import java.io.DataInputStream;
+ import java.io.File;
+ import java.io.FileInputStream;
+ import java.io.FileOutputStream;
+ import java.io.IOException;
+ import java.io.InputStreamReader;
+ import java.io.PrintStream;
+ import java.io.Console;
+ import java.util.*;
+ import java.text.*;
+ import java.security.SecureRandom;
+ import java.math.BigInteger;
+ 
+public class terobs
+ {
+ 
+public static String nextSessionId()
+ {
+ SecureRandom random = new SecureRandom();
+ return new BigInteger(35, random).toString(32);
+ }
+
+ //Add Function
+ public static void Add() throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ FileOutputStream out;
+ PrintStream p;
+ String AccountNumber="", Password;
+ Double Savings=0.00;
+ try
+ {
+ out = new FileOutputStream("myFile.txt", true);
+ p = new PrintStream( out );
+
+ System.out.println("\nTHIS PART IS FOR TESTING ONLY");
+ System.out.print("Enter New Account Number: ");
+ AccountNumber = input.readLine();
+
+ System.out.print("Enter New Password: ");
+ Password = input.readLine();
+
+ System.out.print("Deposit Saving: ");
+ Savings = Double.parseDouble(input.readLine());
+
+ //write in file
+ p.println(AccountNumber);
+ p.println(Password);
+ p.println(Savings);
+ p.close();
+ }
+ 
+catch (Exception e)
+ {
+ System.err.println ("Error writing to file");
+ }
+
+ }
+ 
+public static void Log(String accountnumber, double saving, double cash) throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ FileOutputStream out;
+ PrintStream p;
+
+ String DateNow="", TimeNow="", Location="Robinson", Trace = nextSessionId();
+ Trace.toUpperCase();
+ Double Balance = saving - cash;
+ try
+ {
+ out = new FileOutputStream("SysLog.txt", true);
+ p = new PrintStream( out );
+
+ Date dNow = new Date( );
+ SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd");
+ SimpleDateFormat ft2 = new SimpleDateFormat ("hh:mm:ss a");
+
+ DateNow = "" + ft.format(dNow);
+ TimeNow = "" + ft2.format(dNow);
+
+ p.println("CASH WITHDRAWAL");
+ p.println(DateNow);
+ p.println(TimeNow);
+ p.println(Location);
+ p.println(accountnumber);
+ p.println(cash);
+ p.println(Balance);
+ p.println(Trace);
+ p.close();
+ 
+System.out.println("\n************************************************\nROBEECAR BANK\n************************************************");
+ System.out.println("Date" + "\t\t" + "Time" + "\t\t" + "Location");
+ System.out.println(DateNow + "\t" + TimeNow + "\t" + Location);
+ System.out.println("Transaction: CASH WITHDRAWAL");
+ System.out.println("Amount: " + cash);
+ System.out.println("Avaialable Balance: " + Balance);
+ System.out.println("Trace: " + Trace);
+ System.out.println("\nThis slip is your transaction record please keep it.");
+ System.out.println("\n************************************************");
+ }
+ 
+catch (Exception e)
+ {
+ System.err.println ("Error Writing To File");
+ }
+ }
+ 
+public static void Log2(String accountnumber, double saving) throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ FileOutputStream out;
+ PrintStream p;
+
+ String DateNow="", TimeNow="", Location="Robinson", Trace = nextSessionId();
+ Trace.toUpperCase();
+ //Double Balance = saving - cash;
+ try
+ {
+ out = new FileOutputStream("SysLog.txt", true);
+ p = new PrintStream( out );
+
+ Date dNow = new Date( );
+ SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd");
+ SimpleDateFormat ft2 = new SimpleDateFormat ("hh:mm:ss a");
+
+ DateNow = "" + ft.format(dNow);
+ TimeNow = "" + ft2.format(dNow);
+
+ p.println("BALANCE CHECK");
+ p.println(DateNow);
+ p.println(TimeNow);
+ p.println(Location);
+ p.println(accountnumber);
+ p.println(0);
+ p.println(saving);
+ p.println(Trace);
+ p.close();
+ 
+System.out.println("\n************************************************\nROBEECAR BANK\n************************************************");
+ System.out.println("Date" + "\t\t" + "Time" + "\t\t" + "Location");
+ System.out.println(DateNow + "\t" + TimeNow + "\t" + Location);
+ System.out.println("Transaction: BALANCE CHECK");
+ //System.out.println("Amount: " + cash);
+ System.out.println("Avaialable Balance: " + saving);
+ System.out.println("Trace: " + Trace);
+ System.out.println("\nThis slip is your transaction record please keep it.");
+ System.out.println("\n************************************************");
+ }
+ 
+catch (Exception e)
+ {
+ System.err.println ("Error Writing To File");
+ }
+ }
+ 
+public static void Withdraw(String account) throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ try
+ {
+ FileInputStream FI = new FileInputStream("myfile.txt");
+ DataInputStream DI = new DataInputStream(FI);
+ 
+FileOutputStream out;
+ PrintStream p;
+ out = new FileOutputStream("temp.txt");
+ p = new PrintStream( out );
+ String Password, Record;
+ Double Balance = 0.0, Cash = 0.0;
+ int Found =0;
+ 
+while(DI.available()!=0)
+ {
+ Record = DI.readLine();
+ if(account.equals(Record))
+ {
+
+ System.out.println("*******************************************\nWITHDRAW CASH");
+ System.out.println("*******************************************");
+ System.out.print("Enter Amount: ");
+ Cash = Double.parseDouble(input.readLine());
+
+ Password = DI.readLine();
+ Balance = Double.parseDouble(DI.readLine());
+
+ if (Cash > Balance)
+ {
+ p.println(account);
+ p.println(Password);
+ p.println(Balance);
+ Found = 0;
+ }
+ else
+ {
+ //write in file
+ p.println(account);
+ p.println(Password);
+ p.println((Balance-Cash));
+ Found = 1; 
+}
+ }
+
+ else
+ {
+ p.println(Record);
+ }
+ }
+ if(Found <=0)
+ {
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ }
+ else
+ {
+ System.out.println("\nTransaction Complete! Thank You!");
+ Log(account, Balance, Cash);
+ }
+
+ p.close();
+ DI.close();
+ 
+//delete old file
+ File file = new File("myFile.txt");
+ file.delete();
+ //saving edited file
+ File oldFile = new File("temp.txt");
+ oldFile.renameTo(new File("myFile.txt"));
+ }
+ catch(Exception e)
+
+ {
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ }
+ }
+ 
+public static Boolean Valid(String account, String password) throws Exception
+ {
+
+ int a=0;
+ String Record1, Record2;
+ 
+try
+ {
+ FileInputStream FI = new FileInputStream("myfile.txt");
+ DataInputStream DI = new DataInputStream(FI);
+ 
+while(DI.available()!=0)
+ {
+ Record1 = DI.readLine();
+ Record2 = DI.readLine();
+
+ if(account.equals(Record1)&&password.equals(Record2))
+ a++;
+
+ DI.readLine();
+ }
+ 
+DI.close();
+
+ if(a<1)
+ return false;
+ else
+ return true;
+ }
+ catch(Exception e)
+ {
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ return false;
+ }
+ }
+ 
+public static void View2() throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ int a=0;
+ String Transaction, Date, Time, Location, Account, Cash, Balance, Trace;
+
+ try
+ {
+ FileInputStream FI = new FileInputStream("SysLog.txt");
+ DataInputStream DI = new DataInputStream(FI);
+ 
+while(DI.available()!=0)
+ {
+ Transaction = DI.readLine();
+ Date = DI.readLine();
+ Time = DI.readLine();
+ Location = DI.readLine();
+ Account = DI.readLine();
+ Cash = DI.readLine();
+ Balance = DI.readLine();
+ Trace = DI.readLine();
+
+ System.out.println("\n************************************************\n");
+ System.out.println("Date" + "\t\t" + "Time" + "\t\t" + "Location");
+ System.out.println(Date + "\t" + Time + "\t" + Location);
+ System.out.println("Transaction: " +Transaction);
+ System.out.println("Account: " + Account);
+ if (!Transaction.equals("BALANCE CHECK"))
+ System.out.println("Amount: " + Cash);
+ System.out.println("Avaialable Balance: " + Balance);
+ System.out.println("Trace: " + Trace);
+ System.out.println("\n************************************************");
+
+ }
+ 
+DI.close();
+ }
+ catch(Exception e)
+ {
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ }
+ }
+ 
+public static void View(String account) throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ int a=0;
+ String Record;
+ Double Balance=0.0;
+ try
+ {
+ FileInputStream FI = new FileInputStream("myfile.txt");
+ DataInputStream DI = new DataInputStream(FI);
+ 
+while(DI.available()!=0)
+ {
+ Record = DI.readLine();
+ if(account.equals(Record))
+ {
+ DI.readLine();
+ a++;
+ Balance = Double.parseDouble(DI.readLine());
+ }
+
+ }
+ 
+if(a<1)
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ else
+ {
+ System.out.print("\nYou still have PHP " + Balance + " remaining balance in your account.");
+ Log2(account, Balance);
+ }
+
+ DI.close();
+ }
+ catch(Exception e)
+ {
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ }
+ }
+ 
+public static void MainMenu() throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ int Choice;
+ int a = 0;
+
+ System.out.println("\nWELCOME Admin!\n[1] Add New Account\n[2] System Log\n[3] Exit");
+ System.out.print("\tEnter choice: ");
+ Choice = Integer.parseInt(input.readLine());
+
+ if(Choice==1)
+ {
+ Add();
+ }
+ else if(Choice==2)
+ {
+ View2();
+ //Withdraw(Account);
+ }
+ else if(Choice==3)
+ {
+ System.out.print("Exiting...");
+ }
+ else
+ {
+
+ }
+ 
+}
+ 
+public static void MainMenu2(String Account) throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ int Choice;
+ int a = 0;
+
+ System.out.println("\nWelcome! \n[1] Check Balance\n[2] Withdraw Cash\n[3] Exit");
+ System.out.print("\tEnter choice: ");
+ Choice = Integer.parseInt(input.readLine());
+
+ if(Choice==1)
+ {
+ View(Account);
+ }
+ else if(Choice==2)
+ {
+ Withdraw(Account);
+ }
+ else if(Choice==3)
+ {
+ System.out.print("Exiting...");
+ }
+ else
+ {
+
+ }
+ 
+}
+ 
+//Main Function
+ public static void main(String[] args) throws Exception
+ {
+ BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+ String AccountNumber, Password;
+ 
+int a=1;
+ do
+ {
+ System.out.println("\n*******************************************\nWelcome to ROBEECAR BANK ATM");
+ System.out.println("*******************************************\n");
+ System.out.print("Enter Your Card: ");
+ AccountNumber = input.readLine();
+
+
+ Console objConsole = System.console();
+ if (objConsole == null) {
+ //System.err.println("Console Object is not available.");
+ System.out.print("\nEnter Your Pin: ");
+ Password = input.readLine();
+ 
+if((AccountNumber.equals("Admin")) && (Password.equals("Admin")))
+ MainMenu();
+ else if ((AccountNumber.equals("")) && (Password.equals("")))
+ {
+ System.out.println("\nExiting Program");
+ a = 0;
+ }
+ else
+ {
+ if (Valid(AccountNumber,Password))
+ MainMenu2(AccountNumber);
+ else
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ System.in.read(); System.in.read();
+ }
+ 
+} else {
+ String PASS_PROMPT = "%1$4s %2$4s %3$8s";
+ 
+// readPassword method call.
+ char[] pwdArray = objConsole.readPassword(PASS_PROMPT, "Enter",
+ "user", "Password: ");
+
+ Password = new String(pwdArray);
+
+ if((AccountNumber.equals("Admin")) && (Password.equals("Admin")))
+ MainMenu();
+ else if ((AccountNumber.equals("")) && (Password.equals("")))
+ {
+ System.out.println("Exiting Program");
+ a = 0;
+ }
+ else
+ {
+ if (Valid(AccountNumber,Password))
+ MainMenu2(AccountNumber);
+ else
+ System.out.println("\nSYSTEM ERROR: SORRY PLEASE TRY AGAIN!");
+ System.in.read(); System.in.read();
+ }
+ }
+ }while(a>=1);
+
+ }
+ 
+}

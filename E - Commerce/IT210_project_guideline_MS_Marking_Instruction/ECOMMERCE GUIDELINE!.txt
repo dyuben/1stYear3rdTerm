@@ -1,0 +1,58 @@
+project proposal
+-----------------------------------------
+introduction
+------------------------------------------
+objective
+------------------------------------------
+web page outline
+------------------------------------------
+web page screen design
+------------------------------------------
+Proposed System Expenses
+Hardware Cost:
+Input Devices
+Output Devices
+Computer Case
+Total=
+-----------------------------------------
+Software Cost:
+Total=
+----------------------------------------
+Other Requirement Cost
+Ex. PLDT
+Total=
+-------------------------------------------
+Current System Expenses
+Hardware Cost:
+Input Devices
+Output Devices
+Computer Case
+Total=
+-----------------------------------------
+Software Cost:
+Total=
+----------------------------------------
+Communication Cost
+Ex. PLDT
+Total=
+-------------------------------------------
+Web hosting Facility
+(Saan pinublish ung site mo)
+------------------------------------------
+Free Web Hosting Procedure
+(Kung paano mo napublish yun site mo)
+-------------------------------------------------
+Site Development
+(Shopping Cart)
+-------------------------------------------------
+Security Plan
+(firewall)
+------------------------------------------------
+Implementation
+Program Strenght:
+Program Weakness:
+Program Enhancement:
+-------------------------------------------------
+References:
+
+ECOMMERCE!

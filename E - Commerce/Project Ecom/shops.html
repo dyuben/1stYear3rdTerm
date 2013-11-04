@@ -1,0 +1,118 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="dropdown.css">
+<script type="text/javascript">
+    function shirtgo(){
+        s1=document.getElementById("bandname1").value;
+        if (s1=="Alesana"){
+            document.getElementById("image").src="alesana.png";
+            document.getElementById("bandname").innerHTML='SOUL';
+            document.getElementById("price").innerHTML='Price: 350php';
+            document.getElementById("bandname1").value="SOUL";
+            document.getElementById("price1").value=350;
+            document.getElementById("pic1").value="2";
+        }
+        else if (s1=="We Are In The Crowd"){
+            document.getElementById("image").src="waitc.jpeg";
+            document.getElementById("bandname").innerHTML='SCORPION';
+            document.getElementById("price").innerHTML='Price: 350php';
+            document.getElementById("bandname1").value="SCORPION";
+            document.getElementById("price1").value=350;
+            document.getElementById("pic1").value="3";
+        }
+
+    }
+
+    function shirtback(){
+        p=document.getElementById("pic1").value;
+        if(p=="2"){
+            document.getElementById("image").src="sirens.jpeg";
+            document.getElementById("bandname").innerHTML='MUDVAYNE';
+            document.getElementById("price").innerHTML='Price: 300php';
+            document.getElementById("bandname1").value="MUDVAYNE";
+            document.getElementById("price1").value=300;
+            document.getElementById("pic1").value="1";
+        }
+        else if(p==3){
+            document.getElementById("image").src="waitc.jpeg";
+            document.getElementById("bandname").innerHTML='SOUL';
+            document.getElementById("price").innerHTML='Price: 350php';
+            document.getElementById("bandname1").value="SOUL";
+            document.getElementById("price1").value=350;
+            document.getElementById("pic1").value="2";
+        }
+    }
+
+    function cart(){
+        c1=document.getElementById("bandname1").value;
+        c2=document.getElementById("price1").value;
+        document.getElementById("item").innerHTML=c1;
+        document.getElementById("total").innerHTML=c2 + 'php';
+
+        countitem=(document.getElementById("item1").value);
+        document.getElementById("item1").value=countitem + 1;
+    }
+</script>
+</head>
+
+<body bgcolor="black">
+<center>
+<div name="banner"><img src="#.jpg" width="1000" height="100"/></div>
+</center>
+<center>    <table><tr><td>
+	<div id="nav">
+<ul>
+	<li><a href="index.html"> HOME  </a></li>
+	<li><a href="gallery.html"> GALLERY </a>
+	<li><a href="shop.html"> SHOP  </a></li>
+	<li><a href="about.html"> ABOUT THIS SITE </a></li>
+</ul>
+        </div></td></tr></table>
+<hr>
+
+<center>    <table><tr><td>
+	<div id="photo">
+<ul>
+			<li><a  href="shops.html">Shirt</a></li>
+			<li><a  href="jacket.html">Jacket</a></li>
+			<li><a  href="cap.html">Cap</a></li>
+			<li><a  href="acc.html">Accessories</a></li>
+</ul>
+        </div></td></tr></table>
+    <table>
+        <tr>
+            <td valign="top">
+                <fieldset><center>
+            <table>
+                <tr><td><font color="white">No. of Items:</td><td><font color="white"><b id="item">0</b></td></tr>
+                <tr><td><font color="white">Total Price: </td><td><font color="white"><b id="total">0</b></td></tr>
+                <tr><td><font color="white">Name: </td><td><input type="text"></td></tr>
+                <tr><td><font color="white">E-mail Address: </td><td><input type="text"></td></tr>
+            </table>
+                        <input type="button" value="Buy"></fieldset>
+                <input type="text" id="item1" hidden="true"><br>
+                <input type="text" id="bandname1" hidden="true" value="MUDVAYNE"><br>
+                <input type="text" id="price1" hidden="true" value="300"><br>
+                <input type="text" id="pic1" hidden="true" value="1"><br>
+            </td>
+            <td valign="bottom">
+                <input type="button" value="<<PREVIOUS" onclick="shirtback()">
+            </td>
+            <td>
+                <img src="p1.jpg" width="300" height="300" id="image"/>
+            </td>
+            <td valign="bottom">
+                <input type="button" value="NEXT>>" onclick="shirtgo()">
+            </td>
+            <td valign="top"><font color="white">
+                <b id="bandname">MUDVAYNE</b><br>
+                <p id="price">Price: 300php</p><br></font>
+                <input type="button" value="ADD TO CART" onclick="cart()">
+            </td>
+        </tr>
+    </table>
+
+<hr>
+
+</body>
+</html>

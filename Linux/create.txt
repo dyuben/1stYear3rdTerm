@@ -1,0 +1,53 @@
+Instructions:
+
+1. Create 2 folders w/c are imus and bacoor.
+ex.
+mkdir imus bacoor
+
+cd imus
+
+2. Create files
+
+ex. 
+touch file1 file2 file3
+
+
+
+chmod - changing the permissions of user group and other account.
+
+. - itself
+.. - parent directory
+
+ex. 
+chmod u+x file1 - user execute file
+
+chmod u-w file1	- user clear write
+
+chmod ug+w file1 - user group add write
+
+chmod a+x file1 - make ugo executable
+
+chmod a-r file1 - clear all read
+
+
+ADDING USER ACCOUNTS AND GROUPS
+
+sudoer - acts as an administrator.
+ex. 
+adduser - to add an account
+sudo adduser
+
+su - to switch account
+
+Instructions:
+
+1. Create two accounts which are cha and jr
+2. inside /home/cha create 3 files w/c are it205, it206, it207
+3. Inside /home/jr create 3 files w/c are it211, it212, 209
+
+rw-rwxr-- it205
+--------- it206
+r--r--r-- it207
+rw-r----x it211
+-wx-w--wx it212
+r-xrw-rw- it209

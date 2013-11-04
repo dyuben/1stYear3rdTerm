@@ -1,0 +1,337 @@
+import java.io.*;
+public class hehe
+{
+//Auto number
+public static String generate_id() throws IOException
+{
+BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+FileOutputStream out;
+PrintStream p;
+String ID = null;
+int a = 1;
+String Record;
+try
+{
+FileInputStream FI = new FileInputStream("ID.txt");
+DataInputStream DI = new DataInputStream(FI);
+out = new FileOutputStream("ID.txt", true);
+p = new PrintStream(out);
+while(DI.available()!=0)
+{
+Record = DI.readLine();
+a+=1;
+}
+ID=String.valueOf(a);
+//write in file
+p.println(ID);
+p.close();
+}
+catch (Exception e)
+{
+System.err.println ("Error writing ID");
+}
+
+return ID;
+}
+
+//Add Function
+public static void Add() throws Exception
+{
+BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+FileOutputStream out;
+PrintStream p;
+String ENum, ELast, EFirst, EMiddle, EAge, EAddress;
+try
+{
+out = new FileOutputStream("myFile.txt", true);
+p = new PrintStream( out );
+System.out.print("Employee Number: ");
+ENum = "0000" + generate_id();
+System.out.println(ENum);
+System.out.print("Enter Employee Last Name: ");
+ELast = input.readLine();
+System.out.print("Enter Employee First Name: ");
+EFirst = input.readLine();
+System.out.print("Enter Employee Middle Initial: ");
+EMiddle = input.readLine();
+System.out.print("Enter Employee Age: ");
+EAge = input.readLine();
+System.out.print("Enter Employee Address: ");
+EAddress = input.readLine();
+
+//write in file
+p.println(ENum);
+p.println(ELast);
+p.println(EFirst);
+p.println(EMiddle);
+p.println(EAge);
+p.println(EAddress);
+p.close();
+}
+
+catch (Exception e)
+{
+System.err.println ("Error writing to file");
+}
+}
+
+//SearchDelete
+public static void Delete() throws Exception
+{
+BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+try
+{
+FileInputStream FI = new FileInputStream("myfile.txt");
+DataInputStream DI = new DataInputStream(FI);
+
+FileOutputStream out;
+PrintStream p;
+out = new FileOutputStream("temp.txt");
+p = new PrintStream( out );
+String ENum, Record, Choice;
+int Found =0;
+
+System.out.print("Enter Employee Number: ");
+ENum = input.readLine();
+while(DI.available()!=0)
+{
+Record = DI.readLine();
+if(ENum.equals(Record))
+{
+System.out.println("Record found. Delete?[Y/N]?");
+Choice = input.readLine();
+Choice = Choice.toUpperCase();
+if(Choice.equals("Y"))
+{
+DI.readLine();
+DI.readLine();
+DI.readLine();
+DI.readLine();
+DI.readLine();
+Found = 1;
+}
+else
+p.println(Record);
+}
+else
+{
+p.println(Record);
+}
+}
+if(Found <=0)
+{
+System.out.println("No Record");
+}
+p.close();
+DI.close();
+
+//delete old file
+File file = new File("myFile.txt");
+file.delete();
+//saving edited file
+File oldFile = new File("temp.txt");
+oldFile.renameTo(new File("myFile.txt"));
+}
+catch(Exception e)
+{
+System.out.println("File input error");
+}
+}
+
+//Edit Function
+
+public static void Edit() throws Exception
+{
+BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+try
+{
+FileInputStream FI = new FileInputStream("myfile.txt");
+DataInputStream DI = new DataInputStream(FI);
+
+FileOutputStream out;
+PrintStream p;
+out = new FileOutputStream("temp.txt");
+p = new PrintStream( out );
+String ENum, Record, Choice, ENum2, ELast, EFirst, EMiddle, EAge, EAddress;
+int Found =0;
+
+System.out.print("Enter Employee Number: ");
+ENum = input.readLine();
+while(DI.available()!=0)
+{
+Record = DI.readLine();
+if(ENum.equals(Record))
+{
+System.out.println("Record found. Edit?[Y/N]?");
+Choice = input.readLine();
+Choice = Choice.toUpperCase();
+if(Choice.equals("Y"))
+{
+System.out.println("Employee Number: " + ENum);
+System.out.print("Enter Employee Last Name: ");
+ELast = input.readLine();
+DI.readLine();
+System.out.print("Enter Employee First Name: ");
+EFirst = input.readLine();
+DI.readLine();
+System.out.print("Enter Employee Middle Initial: ");
+EMiddle = input.readLine();
+DI.readLine();
+System.out.print("Enter Employee Age: ");
+EAge = input.readLine();
+DI.readLine();
+System.out.print("Enter Employee Address: ");
+EAddress = input.readLine();
+DI.readLine();
+
+//write in file
+p.println(ENum);
+p.println(ELast);
+p.println(EFirst);
+p.println(EMiddle);
+p.println(EAge);
+p.println(EAddress);
+Found = 1;
+}
+else
+p.println(Record);
+}
+else
+{
+p.println(Record);
+}
+}
+if(Found <=0)
+{
+System.out.println("No Record");
+}
+p.close();
+DI.close();
+
+//delete old file
+File file = new File("myFile.txt");
+file.delete();
+//saving edited file
+File oldFile = new File("temp.txt");
+oldFile.renameTo(new File("myFile.txt"));
+}
+catch(Exception e)
+{
+System.out.println("File input error");
+}
+}
+
+//ViewRecord
+public static void View() throws Exception
+{
+BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+int a=0;
+try
+{
+FileInputStream FI = new FileInputStream("myfile.txt");
+DataInputStream DI = new DataInputStream(FI);
+
+while(DI.available()!=0)
+{
+System.out.println("Employee Number: " + DI.readLine());
+a+=1;
+System.out.println("Employee Last Name: " + DI.readLine());
+a+=1;
+System.out.println("Employee First Name: " + DI.readLine());
+System.out.println("Employee Middle Initial: " + DI.readLine());
+System.out.println("Employee Age: " + DI.readLine());
+System.out.println("Employee Address: " + DI.readLine());
+System.out.println("");
+}
+if(a<=1)
+{
+System.out.println("No record");
+}
+DI.close();
+}
+catch(Exception e)
+{
+System.out.println("File input error");
+}
+}
+
+//Main Menu Function
+public static void MainMenu() throws Exception
+{
+BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+String Choice;
+int a = 0;
+do
+{
+System.out.println("Add[A] \nEdit[E] \nDelete[D] \nView All Records[V] \nLogout[L] Enter Choice: ");
+Choice = input.readLine();
+Choice = Choice.toUpperCase();
+if(Choice.equals("A"))
+{
+System.out.println("Adding");
+Add();
+}
+else if(Choice.equals("E"))
+{
+System.out.println("Editing");
+Edit();
+}
+else if(Choice.equals("V"))
+{
+System.out.println("Viewing");
+View();
+}
+else if(Choice.equals("D"))
+{
+System.out.println("Deleting");
+Delete();
+}
+else if(Choice.equals("L"))
+{
+System.out.println("Logout");
+
+a = 1;
+}
+else
+{
+System.out.println("Error");
+}
+}while(a<=0);
+System.in.read();
+}
+
+//Main Function
+public static void main(String[] args) throws Exception
+{
+BufferedReader input = new BufferedReader(new InputStreamReader(System.in ));
+String Username;
+String Password;
+
+int a=1;
+do
+{
+System.out.println("SampleProgram Login Screen\nEnter blank Username and Password to exit program");
+
+System.out.print("Username: ");
+Username = input.readLine();
+System.out.print("Password: ");
+Password = input.readLine();
+if((Username.equals("Admin")) && (Password.equals("Admin")))
+{
+System.out.println("Welcome to my program!");
+MainMenu();
+}
+else if ((Username.equals("")) && (Password.equals("")))
+{
+System.out.println("Exiting Program");
+a = 0;
+}
+else
+{
+System.out.println("Invalid Username or Password");
+System.in.read();
+}
+System.in.read();
+}while(a>=1);
+}
+}

@@ -1,0 +1,6 @@
+Date dNow = new Date( );
+ SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd");
+ SimpleDateFormat ft2 = new SimpleDateFormat ("hh:mm:ss a");
+
+ DateNow = "" + ft.format(dNow);
+ TimeNow = "" + ft2.format(dNow);

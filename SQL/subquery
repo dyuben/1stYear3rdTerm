@@ -1,0 +1,14 @@
+select stud_id, lname, fname, gender, date_enrolled
+from student
+where stud_id < all
+(select stud_id
+from student
+where lname = '%a')
+
+and course_id = 'DCS';
+
+select stud_id, lname, fname, course_id, groupleader
+from student
+where groupleader = (select stud_id
+from student
+where stud_id = 'S005');

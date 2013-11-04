@@ -1,0 +1,27 @@
+find - command used in searching files
+
+ex.
+	find name_of_the_file
+
+using find in wildcards:
+
+* - all 
+ex. find w*
+
+? - no. of letter 
+ex. find w???
+
+t[a-z] - ta, tb, tc, ....
+ex. find w[a-z]*
+difference is you can specify what you want to find.
+find w[a-d]
+
+! - not
+ex. find w[!a-z]*
+
+^ - not
+ex. find w[^a-z]*
+
+umask - reverse the value of permissions, also gives the default value.
+
+ex. umask 111

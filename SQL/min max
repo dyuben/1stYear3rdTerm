@@ -1,0 +1,7 @@
+select count(course_id) as "NO. OF STUDENTS", course_id COURSE
+from student
+group by course_id;
+
+select course_id COURSE, MIN(DATE_ENROLLED)as "New Enrollee", MAX(DATE_ENROLLED) as "Old Enrollee"
+from student
+group by course_id;

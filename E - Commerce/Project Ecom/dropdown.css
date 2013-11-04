@@ -1,0 +1,290 @@
+* { margin: 0px; padding: 0px; }
+
+#nav ul {
+
+list-style-type: none;
+}
+
+
+
+#nav ul li {
+
+float:left;
+position:relative;
+}
+
+#nav ul li a {
+
+text-align: center;
+padding: 20px;
+display: block;
+text-decoration: none;
+color: white;
+border-style:dotted;
+border-width:1px;
+}
+
+#nav ul li a:hover {
+
+background-color: #303030;
+color: white;
+
+}
+
+#nav ul li ul {
+
+display: none;
+}
+
+#nav ul li:hover ul {
+
+display: block;
+position: absolute;
+}
+
+#nav ul li:hover ul li a {
+
+display: block;
+background-color:#303030;
+color:white;
+width: 110px;
+text-align: center;
+}
+
+#nav ul li:hover ul li a:hover {
+
+background: #303030;
+color:#999;
+}
+
+/*homenav*/
+#homenav a {
+
+text-align: center;
+text-decoration: none;
+padding: 20px;
+color: white;
+background-color: black;
+border-style:dotted;
+border-width:1px;
+}
+
+#homenav a:hover {
+
+background-color: #303030;
+color: white;
+
+}
+
+
+/*Album*/
+#album ul{
+    list-style-type: disc;
+}
+
+#album a {
+
+text-align: center;
+text-decoration: none;
+padding-left: 20px;
+padding-right: 20px;
+padding-bottom: 2px;
+padding-top: 2px;
+color: white;
+background-color: black;
+border-width:1px;
+}
+
+
+#album ul li {
+display: block;
+position: static;
+color: white;
+}
+
+#album ul li a:hover {
+
+background-color: #303030;
+color: white;
+}
+
+#album ul li ul {
+
+display: none;
+}
+
+#album ul li:hover ul {
+
+display: block;
+position: absolute;
+}
+
+#album ul li:hover ul li a {
+
+display: block;
+background-color:#303030;
+color:white;
+width: 110px;
+text-align: center;
+}
+
+/*Schedule*/
+#sched ul{
+    list-style-type: disc;
+}
+
+#sched a {
+
+text-align: center;
+text-decoration: none;
+padding-left: 20px;
+padding-right: 20px;
+padding-bottom: 2px;
+padding-top: 2px;
+color: white;
+background-color: black;
+border-width:1px;
+}
+
+
+#sched ul li {
+display: block;
+position: static;
+color: white;
+}
+
+#sched ul li a:hover {
+
+background-color: #303030;
+color: white;
+}
+
+#sched ul li ul {
+
+display: none;
+}
+
+#sched ul li:hover ul {
+
+display: block;
+position: absolute;
+}
+
+#sched ul li:hover ul li a {
+
+display: block;
+background-color:#303030;
+color:white;
+width: 110px;
+text-align: center;
+}
+
+#cale input{
+    background-color: gray;
+}
+
+/*Band*/
+#band a {
+
+text-align: center;
+text-decoration: none;
+padding: 20px;
+color: white;
+background-color: black;
+border-style:dotted;
+border-width:1px;
+}
+
+#band ul li {
+display: block;
+position: static;
+}
+
+#band ul li a:hover {
+
+background-color: #303030;
+color: white;
+}
+
+#band ul li ul {
+
+display: none;
+
+}
+
+#band ul li:hover ul {
+
+display: block;
+position: absolute;
+}
+
+#band ul li:hover ul li a {
+
+display: block;
+background-color:#303030;
+color:white;
+width: 110px;
+text-align: center;
+}
+
+#prod img{
+    height: 100px;
+    width: 100px;
+}
+
+#photo ul {
+
+list-style-type: none;
+}
+
+
+
+#photo ul li {
+
+float:left;
+position:relative;
+}
+
+#photo ul li a {
+
+text-align: center;
+padding: 20px;
+display: block;
+text-decoration: none;
+color: white;
+border-style:dotted;
+border-width:1px;
+}
+
+#photo ul li a:hover {
+
+background-color: #303030;
+color: white;
+
+}
+
+#photo ul li ul {
+
+display: none;
+}
+
+#photo ul li:hover ul {
+
+display: block;
+position: absolute;
+}
+
+#photo ul li:hover ul li a {
+
+display: block;
+background-color:#303030;
+color:white;
+width: 110px;
+text-align: center;
+}
+
+#photo ul li:hover ul li a:hover {
+
+background: #303030;
+color:#999;
+}

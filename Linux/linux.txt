@@ -1,0 +1,27 @@
+company
+Introduction about the company (product, brief history, some achievements)
+Define Department (3 dept.) - group
+Staff (minimum 3) - user
+
+create files (permissions)
+
+Objectives: 
+
+what do want to do in the company.
+ex. 
+to be able to install linux
+to be able to create users and groups using linux
+importance about linux to define why linux?
+
+
+after installation
+
+adding user
+adduser - kasldas
+ex. 
+sudo adduser jet
+type sudoer password
+new user password
+information
+sudo adduser cha
+sudo adduser jr

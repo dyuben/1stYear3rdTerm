@@ -1,0 +1,37 @@
+Chapter 4: Hands On
+
+Perform Equijoin
+
+select * from student, course
+
+where student.course_id = course.course_id;
+
+select * from course, mentor
+
+where course.mentor_id = mentor.mentor_id;
+
+NON EQUIJOIN
+
+SELFJOIN
+
+select stud.lname || 's group member is/are ' || leader.lname
+
+from student stud, student leader
+
+where stud.stud_id = leader.groupleader;
+
+OUTERJOIN
+
+select * from student s
+
+left outer join course c
+
+on (s.course_id = c.course_id);
+
+NATURAL JOIN
+
+select * from student
+natural join course;
+
+
+
